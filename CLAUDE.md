@@ -32,7 +32,7 @@ For projects that **already maintain their own skills**. We clone their repo as 
 
 ### Type 3: Hand-written Skills
 
-For skills that are written by Anthony Fu with his preferences, experience, tastes and best practices.
+For skills that are written by Travis Reynolds with his preferences, experience, tastes and best practices.
 
 You don't need to do anything about them unless being asked.
 
@@ -145,7 +145,7 @@ Also record the version of the tool/project when the skills were generated.
 name: {name}
 description: {description}
 metadata:
-  author: Anthony Fu
+  author: Travis Reynolds
   version: "2026.1.1"
   source: Generated from {source-url}, scripts located at https://github.com/antfu/skills
 ---
