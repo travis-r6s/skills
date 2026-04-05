@@ -247,6 +247,105 @@ export function WelcomeEmail({ name }: { name: string }) {
 const html = await render(<WelcomeEmail name="Travis" />)
 ```
 
+## State Management: Zustand
+
+For React apps that need persistent client state:
+
+```ts
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+interface AuthStore {
+  user: User | null
+  setUser: (user: User | null) => void
+}
+
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      user: null,
+      setUser: (user) => set({ user }),
+    }),
+    { name: 'auth-store' },
+  ),
+)
+```
+
+## Server State: TanStack React Query
+
+For data fetching and caching in React/Next.js:
+
+```ts
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
+function useUser(id: string) {
+  return useQuery({
+    queryKey: ['user', id],
+    queryFn: () => fetchUser(id),
+  })
+}
+
+function useUpdateUser() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: updateUser,
+    onSuccess: (_, { id }) => queryClient.invalidateQueries({ queryKey: ['user', id] }),
+  })
+}
+```
+
+Pair with `graphql-request` for typed GraphQL queries in Next.js apps.
+
+## Nuxt Auth: nuxt-auth-utils
+
+For session management in Nuxt 3 apps. Provides server-side session helpers and `useUserSession` composable:
+
+```ts
+// In Nuxt server routes
+const session = await getUserSession(event)
+await setUserSession(event, { user: { id, email } })
+await clearUserSession(event)
+
+// In Nuxt pages/composables
+const { user, loggedIn, clear: logout } = useUserSession()
+```
+
+## H3/Nitro Request Validation: h3-zod
+
+For validating request bodies and params in Nuxt server routes:
+
+```ts
+import { useValidatedBody, z } from 'h3-zod'
+
+export default defineEventHandler(async (event) => {
+  const { name, email } = await useValidatedBody(event, z.object({
+    name: z.string().min(1),
+    email: z.string().email(),
+  }))
+
+  return createUser({ name, email })
+})
+```
+
+## Headless CMS
+
+**Storyblok** — for marketing/content sites:
+```ts
+import { useStoryblok } from '@storyblok/js'
+```
+
+**Sanity** — for complex structured content:
+```ts
+import { createClient } from '@sanity/client'
+
+const client = createClient({
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-01-01',
+})
+```
+
 ## What to Avoid
 
 | Avoid | Use instead |

@@ -242,6 +242,11 @@ pages/
 server/
   api/
   middleware/
+  database/
+    schema.ts      ← Drizzle schema (if using D1/SQLite)
+    migrations/
+  utils/
+    db.ts          ← useDB() singleton
 components/
 composables/
 utils/
@@ -249,7 +254,28 @@ app.vue
 nuxt.config.ts
 ```
 
-Use `@nuxt/ui` for UI components. Use `Kysely` for database queries. Use `@xata.io/client` for Xata.
+Use `@nuxt/ui` for UI components. Use `Kysely` for PostgreSQL/Xata queries. Use Drizzle ORM with `@nuxthub/core` for Cloudflare D1 (edge) deployments.
+
+**NuxtHub (Cloudflare Workers) pattern:**
+```ts
+// nuxt.config.ts — enable NuxtHub
+export default defineNuxtConfig({
+  modules: ['@nuxthub/core', '@nuxt/ui', 'nuxt-auth-utils'],
+  hub: { database: true },
+})
+```
+
+Database is accessed via `useDB()` composable (see [database.md](database.md)).
+Auth is handled by `nuxt-auth-utils` — `useUserSession()` in pages, `getUserSession(event)` in server routes.
+
+**Storyblok (headless CMS) pattern** — for marketing/content Nuxt sites:
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['@storyblok/nuxt'],
+  storyblok: { accessToken: process.env.STORYBLOK_TOKEN },
+})
+```
 
 ## Electron App Structure (electron-vite)
 

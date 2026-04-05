@@ -3,7 +3,7 @@ name: travis
 description: Travis Reynolds's personal coding conventions, architecture patterns, and tooling preferences for TypeScript/JavaScript projects. Use when writing any code in Travis's projects, setting up new projects, or making architectural decisions.
 metadata:
   author: Travis Reynolds
-  version: "2026.04.05"
+  version: "2026.04.05b"
 ---
 
 ## Coding Style
@@ -57,7 +57,7 @@ For full patterns: [async-and-errors](references/async-and-errors.md)
 | `pnpm` | Always — never npm or yarn |
 | `biome` | Lint + format — replaces ESLint/Prettier |
 | `tsx` | Run `.ts` scripts directly |
-| `tsup` | Build library packages |
+| `tsdown` | Build library packages (replaces tsup) |
 | `doppler run --` | Prefix all dev/test scripts — never `.env` files |
 
 For config templates and full toolchain: [tooling](references/tooling.md)
@@ -77,6 +77,9 @@ For config templates and full toolchain: [tooling](references/tooling.md)
 | Config merging | `defu` |
 | GraphQL client | `graphql-request` |
 | Error tracking | `@sentry/node` |
+| React state | `zustand` (client), `@tanstack/react-query` (server) |
+| Nuxt auth | `nuxt-auth-utils` (`useUserSession`) |
+| Nuxt validation | `h3-zod` (server route bodies/params) |
 
 For usage examples: [packages](references/packages.md)
 
@@ -98,7 +101,11 @@ Full checklist: [new-project](references/new-project.md)
 | Architecture | Services, utilities, orchestrators, AdonisJS patterns | [architecture](references/architecture.md) |
 | Async & Errors | async/await patterns, concurrency, error handling, Sentry | [async-and-errors](references/async-and-errors.md) |
 | Tooling | Biome, pnpm, Doppler, tsup, tsx | [tooling](references/tooling.md) |
+| TypeScript | Utility types, discriminated unions, type guards, generics, Zod inference | [typescript](references/typescript.md) |
+| Node.js | Built-ins, file system, HTTP, process, CLI (citty), Azure Functions | [node](references/node.md) |
 | New Project | Project setup checklist and conventions | [new-project](references/new-project.md) |
 | Packages | Preferred npm packages by category | [packages](references/packages.md) |
-| Frontend | React/Vue/Nuxt component patterns, Tailwind | [frontend](references/frontend.md) |
+| React | Components, hooks, context, Zustand, React Query, URQL, Tailwind | [react](references/react.md) |
+| Vue / Nuxt | script setup, composables, server routes, @nuxt/ui, NuxtHub, auth | [vue-nuxt](references/vue-nuxt.md) |
 | GraphQL | Pothos schema builder, graphql-request, codegen | [graphql](references/graphql.md) |
+| Database | Drizzle (Cloudflare D1), Kysely (PostgreSQL/Xata), Lucid (AdonisJS) | [database](references/database.md) |

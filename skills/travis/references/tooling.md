@@ -72,19 +72,56 @@ For running `.ts` scripts directly:
 { "start": "tsx src/index.ts" }
 ```
 
-## Build Tool: tsup
+## Build Tool: tsdown
 
-For building library packages:
+`tsdown` replaces `tsup` for building library packages. Powered by Rolldown — faster and more configurable.
+
+**Scripts:**
 ```json
 {
   "scripts": {
-    "build": "tsup --dts",
-    "dev": "tsup --watch"
+    "build": "tsdown --dts --sourcemap --clean",
+    "dev": "tsdown --watch=./src"
   }
 }
 ```
 
-`tsup.config.ts` when customisation is needed. Output `dist/`.
+**`tsdown.config.ts`** for multi-entry or custom builds:
+```ts
+import { defineConfig } from 'tsdown'
+
+// Single entry
+export default defineConfig({
+  entry: 'src/index.ts',
+  dts: true,
+  sourcemap: true,
+  clean: true,
+  format: ['esm'],
+  target: ['node20', 'es2024'],
+  platform: 'neutral',
+})
+
+// Multiple entries
+export default defineConfig({
+  entry: {
+    index: 'src/index.ts',
+    utils: 'src/utils/index.ts',
+    types: 'src/types.ts',
+  },
+  dts: { sourcemap: true },
+  clean: true,
+  format: ['esm'],
+})
+
+// Unbundled (preserve module structure — good for tree-shaking)
+export default defineConfig({
+  entry: ['src/index.ts'],
+  unbundle: true,
+  platform: 'neutral',
+})
+```
+
+Output goes to `dist/`. Install: `pnpm add -D tsdown`.
 
 ## Secrets: Doppler
 
@@ -126,6 +163,24 @@ setup:
 ```
 
 For bundler-resolved projects (`Vite`, `electron-vite`): use `"moduleResolution": "Bundler"`.
+
+## Database Migrations: Drizzle Kit
+
+For Drizzle ORM projects (Cloudflare D1 / SQLite):
+
+```json
+{
+  "db:generate": "drizzle-kit generate",
+  "db:migrate": "drizzle-kit migrate"
+}
+```
+
+For Kysely projects (PostgreSQL), use `node-pg-migrate`:
+```json
+{
+  "db:migrate": "node-pg-migrate up"
+}
+```
 
 ## Code Generation
 

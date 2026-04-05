@@ -25,7 +25,7 @@ pnpm init
   "engines": { "node": ">=20.x" },
   "scripts": {
     "dev": "doppler run -- tsx src/index.ts",
-    "build": "tsup --dts",
+    "build": "tsdown --dts --sourcemap --clean",
     "lint": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "start": "doppler run -- node dist/index.js"
@@ -120,7 +120,7 @@ Run: `doppler setup` to link the project.
 ## Dev Dependencies to Always Install
 
 ```bash
-pnpm add -D @biomejs/biome typescript @types/node tsx tsup
+pnpm add -D @biomejs/biome typescript @types/node tsx tsdown
 ```
 
 ## Standard Directory Structure
