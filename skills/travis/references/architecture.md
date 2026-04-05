@@ -1,7 +1,6 @@
 ---
 name: architecture
 description: Travis's architectural patterns — services, orchestrators, numbered workflow steps, AdonisJS structure, Azure Functions. Use when designing new features, adding modules, or structuring new projects.
-type: skill
 ---
 
 # My Architecture Patterns

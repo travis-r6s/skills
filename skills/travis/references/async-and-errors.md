@@ -1,7 +1,6 @@
 ---
 name: async-and-errors
 description: Travis's patterns for async code, error handling, and Sentry integration. Use when writing any async functions, error boundaries, or adding observability.
-type: skill
 ---
 
 # Async & Error Handling Patterns

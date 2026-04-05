@@ -1,7 +1,6 @@
 ---
 name: tooling
 description: Travis's preferred toolchain — Biome, pnpm, Doppler, tsup, tsx, codegen. Use when setting up projects, writing scripts, or configuring linting/formatting.
-type: skill
 ---
 
 # My Tooling

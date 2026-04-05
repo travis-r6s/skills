@@ -1,25 +1,26 @@
 ---
 name: frontend
 description: Travis's frontend patterns — React component style, Vue/Nuxt conventions, Tailwind CSS, state management. Use when building UI components, pages, or frontend features.
-type: skill
 ---
 
 # Frontend Patterns
 
 ## React Components
 
-Components use named exports with a `Props` type defined above:
+Components use named exports with a `Props` interface type defined above:
 
 ```tsx
+import { FC } from 'react'
+
 // components/UserCard.tsx
-type UserCardProps = {
+interface UserCardProps {
   userId: string
   name: string
   email: string
   onEdit: (id: string) => void
 }
 
-export const UserCard = ({ userId, name, email, onEdit }: UserCardProps) => {
+export const UserCard: FC<> = ({ userId, name, email, onEdit }: UserCardProps) => {
   return (
     <div className="flex items-center p-4 border border-gray-100 rounded-lg">
       <div>

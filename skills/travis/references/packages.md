@@ -1,7 +1,6 @@
 ---
 name: packages
 description: Travis's preferred npm packages and how he uses them. Use when adding dependencies to a project, choosing between libraries, or writing code that uses these packages.
-type: skill
 ---
 
 # My Preferred Packages

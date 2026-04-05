@@ -1,7 +1,6 @@
 ---
 name: new-project
 description: Travis's checklist and setup process for starting a new project. Use when initialising any new package, app, script, or service.
-type: skill
 ---
 
 # New Project Setup

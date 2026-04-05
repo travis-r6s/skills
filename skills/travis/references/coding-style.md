@@ -1,7 +1,6 @@
 ---
 name: coding-style
 description: Travis's personal code style rules — formatting, naming, TypeScript strictness, import conventions. Use when writing any new code in Travis's projects.
-type: skill
 ---
 
 # My Coding Style

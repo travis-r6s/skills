@@ -1,7 +1,6 @@
 ---
 name: graphql
 description: Travis's GraphQL patterns — Pothos schema builder, graphql-request client, codegen. Use when building or extending GraphQL APIs, adding resolvers, or consuming GraphQL endpoints.
-type: skill
 ---
 
 # GraphQL Patterns
