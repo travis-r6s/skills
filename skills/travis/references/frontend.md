@@ -7,7 +7,7 @@ description: Travis's frontend patterns — React component style, Vue/Nuxt conv
 
 ## React Components
 
-Components use named exports with a `Props` interface type defined above:
+Components use named exports with a `Props` interface type defined above, making use of React types for functional components and any helper types like `PropsWithChildren<>` where needed:
 
 ```tsx
 import { FC } from 'react'
@@ -20,7 +20,7 @@ interface UserCardProps {
   onEdit: (id: string) => void
 }
 
-export const UserCard: FC<> = ({ userId, name, email, onEdit }: UserCardProps) => {
+export const UserCard: FC<UserCardProps> = ({ userId, name, email, onEdit }) => {
   return (
     <div className="flex items-center p-4 border border-gray-100 rounded-lg">
       <div>
@@ -36,8 +36,11 @@ export const UserCard: FC<> = ({ userId, name, email, onEdit }: UserCardProps) =
 Rules:
 - Named exports, not `export default` for components
 - Props type defined immediately above the component
+- Always use provided React types/helpers when possible
 - Tailwind for all styling — no inline styles, no CSS modules (unless legacy)
 - No prop drilling more than 2 levels — use context or state management
+- Always use `useCallback` for function handlers, instead of inline functions
+- Always use `useMemo` where possible
 
 ## React Hooks
 
@@ -56,7 +59,7 @@ export const useStore = () => {
 
 ```tsx
 // context/store-context.tsx
-type StoreContextData = {
+interface StoreContextData {
   storeProperties: StoreProperties | null
   isLoading: boolean
 }
@@ -100,10 +103,10 @@ Prefer semantic grouping in className — layout first, then visual:
 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border rounded-lg hover:bg-gray-50"
 ```
 
-## Apollo Client / GraphQL in React
+## URQL Client / GraphQL in React
 
 ```tsx
-import { useQuery, useMutation, gql } from '@apollo/client'
+import { useQuery, useMutation, gql } from 'urql'
 
 const GET_USER = gql`
   query GetUser($id: ID!) {
@@ -151,7 +154,7 @@ const displayName = computed(() => props.name.trim())
 **Nuxt composables pattern:**
 ```ts
 // composables/useUser.ts
-export const useUser = (userId: string) => {
+export function useUser (userId: string) {
   const { data, pending, error } = await useFetch(`/api/users/${userId}`)
   return { user: data, isLoading: pending, error }
 }
