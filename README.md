@@ -1,6 +1,6 @@
 # Travis Reynolds' Skills
 
-A curated collection of [Agent Skills](https://agentskills.io/home) reflecting [Travis Reynolds](https://github.com/travisreynolds)'s preferences, experience, and best practices, along with usage documentation for the tools.
+A curated collection of [Agent Skills](https://agentskills.io/home) reflecting [Travis Reynolds](https://github.com/travis-r6s)'s preferences, experience, and best practices, along with usage documentation for the tools.
 
 > [!IMPORTANT]
 > This is a fork of [antfu/skills](https://github.com/antfu/skills), customized for Travis's personal tooling preferences and conventions.
@@ -8,13 +8,13 @@ A curated collection of [Agent Skills](https://agentskills.io/home) reflecting [
 ## Installation
 
 ```bash
-pnpx skills add travisreynolds/skills --skill='*'
+pnpx skills add travis-r6s/skills --skill='*'
 ```
 
 or to install all of them globally:
 
 ```bash
-pnpx skills add travisreynolds/skills --skill='*' -g
+pnpx skills add travis-r6s/skills --skill='*' -g
 ```
 
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
